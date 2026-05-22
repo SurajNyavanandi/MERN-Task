@@ -10,19 +10,23 @@ export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const res = await api.post("/api/auth/login", {
-        email,
-        password,
-      });
-
-      login(res.data);
-      navigate("/dashboard");
-    } catch (err) {
-      alert("Invalid credentials");
-    }
-  };
+const handleLogin = async () => {
+  try {
+    console.log("Attempting login with:", { email, password });
+    const res = await api.post("/api/auth/login", {
+      email,
+      password,
+    });
+    console.log("Login response:", res.data);
+    login(res.data);
+    navigate("/dashboard");
+  } catch (err) {
+    console.log("Full error object:", err);
+    console.log("Error response:", err.response);
+    console.log("Error message:", err.response?.data?.message);
+    alert("Invalid credentials");
+  }
+};
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

@@ -3,14 +3,15 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import InvoiceDashboard from "./pages/InvoiceDashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
-
+import Testing from "./pages/Testing";
+   
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+        <Route path="/testing" element={<Testing />} /> 
         <Route
           path="/dashboard"
           element={

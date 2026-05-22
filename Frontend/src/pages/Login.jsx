@@ -25,25 +25,40 @@ export default function Login() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
-      <input
-        placeholder="email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <input
-        placeholder="password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      <button onClick={handleLogin}>Login</button>
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-500 text-white py-2 rounded font-semibold hover:bg-blue-600 transition"
+        >
+          Login
+        </button>
 
-      <p onClick={() => navigate("/register")}>
-        Create account
-      </p>
+        <p
+          onClick={() => navigate("/register")}
+          className="text-center mt-4 text-blue-500 cursor-pointer hover:underline"
+        >
+          Create account
+        </p>
+      </div>
     </div>
   );
 }

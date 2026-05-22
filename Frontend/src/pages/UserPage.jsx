@@ -53,9 +53,6 @@ function UserPage() {
   return (
     <MainLayout>
 
-      <UserForm
-        fetchUsers={fetchUsers}
-      />
 
       <div className="bg-white p-5 rounded-xl shadow mb-6">
 
@@ -86,10 +83,7 @@ function UserPage() {
 
       </div>
 
-      <UserTable
-        users={users}
-        deleteUser={deleteUser}
-      />
+  <UserTable users={users} deleteUser={deleteUser} fetchUsers={fetchUsers} />
 
     </MainLayout>
   );

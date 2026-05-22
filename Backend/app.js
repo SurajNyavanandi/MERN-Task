@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 
 import connectDB from './config/db.js';
 
@@ -9,8 +8,6 @@ import userRoutes from './routes/userRoutes.js';
 import invoiceRoutes from './routes/invoiceRoutes.js';
 import adminGroupRoutes from './routes/adminGroupRoutes.js';
 import unitGroupRoutes from './routes/unitGroupRoutes.js';
-
-dotenv.config();
 
 connectDB();
 

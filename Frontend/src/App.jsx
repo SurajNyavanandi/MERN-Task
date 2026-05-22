@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+//import Register from "./pages/Register";
 import InvoiceDashboard from "./pages/InvoiceDashboard";
 import UserPage from "./pages/UserPage";
 import AdminGroups from "./pages/AdminGroups";
@@ -13,7 +13,7 @@ export default function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} /> */}
         
         {/* Protected Routes - Available to all authenticated users */}
         <Route path="/dashboard" element={

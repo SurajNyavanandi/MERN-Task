@@ -2,11 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Theme - White + Blue + Black ONLY */
 body {
   margin: 0;
   padding: 0;
+  background-color: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Custom Scrollbar - Blue Theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  table {
+    min-width: 600px;
+  }
+  
+  button, 
+  a,
+  [role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* Card styles */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #3b82f6;
+  color: white;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
 }

@@ -4,64 +4,73 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("super@gmail.com");
+  const [password, setPassword] = useState("123456");
+  const [loading, setLoading] = useState(false);
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-const handleLogin = async () => {
-  try {
-    console.log("Attempting login with:", { email, password });
-    const res = await api.post("/api/auth/login", {
-      email,
-      password,
-    });
-    console.log("Login response:", res.data);
-    login(res.data);
-    navigate("/dashboard");
-  } catch (err) {
-    console.log("Full error object:", err);
-    console.log("Error response:", err.response);
-    console.log("Error message:", err.response?.data?.message);
-    alert("Invalid credentials");
-  }
-};
+  const handleLogin = async () => {
+    setLoading(true);
+    try {
+      const res = await api.post("/api/auth/login", {
+        email,
+        password,
+      });
+      login(res.data);
+      navigate("/dashboard");
+    } catch (err) {
+      alert(err.response?.data?.message || "Invalid credentials");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 border border-gray-200">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-black mb-2">WaveNet</h1>
+          <p className="text-gray-600">Invoice Management System</p>
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <div className="space-y-6">
+          <div>
+            <label className="block text-black text-sm font-medium mb-2">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter your email"
+            />
+          </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+          <div>
+            <label className="block text-black text-sm font-medium mb-2">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter your password"
+            />
+          </div>
 
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 text-white py-2 rounded font-semibold hover:bg-blue-600 transition"
-        >
-          Login
-        </button>
+          <button
+            onClick={handleLogin}
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 disabled:opacity-50"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
-        <p
-          onClick={() => navigate("/register")}
-          className="text-center mt-4 text-blue-500 cursor-pointer hover:underline"
-        >
-          Create account
-        </p>
+          <div className="text-center text-gray-500 text-sm border-t border-gray-200 pt-6">
+            <p>Demo Credentials:</p>
+            <p className="text-black font-medium">super@gmail.com / 123456</p>
+          </div>
+        </div>
       </div>
     </div>
   );
